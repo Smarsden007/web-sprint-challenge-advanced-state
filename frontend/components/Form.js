@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import * as actionCreators from '../state/action-creators'
 
 export function Form(props) {
-
   const {
     inputChange,
     postQuiz,
@@ -11,12 +10,11 @@ export function Form(props) {
   } = props
 
   console.log(props.form)
-
   const onChange = evt => {
-    const { value, id } = evt.target;
-    const newQuestion = { ...form, [id]: value }
-    inputChange(newQuestion)
-    console.log(newQuestion)
+    const { value, id } = evt.target
+    const newQuestion = {...form, [id]:value}
+   inputChange(newQuestion)
+   console.log(newQuestion)
   }
 
   const onSubmit = evt => {
@@ -26,13 +24,14 @@ export function Form(props) {
       question_text: props.form.newQuestion,
       true_answer_text: props.form.newTrueAnswer,
       false_answer_text: props.form.newFalseAnswer
-    });
-
+    })
   }
-  const enabled =
+
+  const enabled = 
     props.form.newQuestion.trim('').length > 0 &&
     props.form.newTrueAnswer.trim('').length > 0 &&
     props.form.newFalseAnswer.trim('').length > 0
+  
 
   return (
     <form id="form" onSubmit={onSubmit}>
